@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarryCalc - Financial Stability Assessment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background-color: #fafafa;
+        }
+        .brand-teal { color: #005567; }
+        .brand-burgundy { color: #7d2431; }
+        .bg-brand-teal { background-color: #005567; }
+        .bg-brand-burgundy { background-color: #7d2431; }
+        .border-brand-teal { border-color: #005567; }
+        .border-brand-burgundy { border-color: #7d2431; }
+        .hover-burgundy:hover { background-color: #fef2f2; }
+
+        .stability-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+        }
+        .stability-stable {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+        .stability-borderline {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+        .stability-unstable {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        .loader {
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #005567;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <div class="mb-8">
+            <h1 class="text-4xl md:text-5xl font-light brand-teal mb-2">CarryCalc</h1>
+            <p class="text-xl md:text-2xl text-gray-600 font-light">Financials, Figured.</p>
+        </div>
+
+        <!-- Error Message -->
+        <div id="errorContainer" class="hidden mb-6 bg-red-50 border border-red-200 rounded-lg p-4">
+            <div class="flex items-center gap-2 text-red-900">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                </svg>
+                <span id="errorMessage"></span>
+            </div>
+        </div>
+
+        <!-- Input Form -->
+        <div id="inputForm" class="max-w-2xl mx-auto">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-light brand-teal mb-6">Financial Assessment</h2>
+
+                <form id="assessmentForm" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Candidate Name</label>
+                        <input type="text" id="candidateName" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">ZIP Code</label>
+                        <input type="text" id="zipCode" required pattern="[0-9]{5}"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                            placeholder="12345">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Household Size</label>
+                        <input type="number" id="householdSize" required min="1" max="15"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Annual Household Income</label>
+                        <div class="relative">
+                            <span class="absolute left-3 top-2.5 text-gray-500">$</span>
+                            <input type="number" id="householdIncome" required min="0"
+                                class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                                placeholder="50000">
+                        </div>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-brand-teal text-white py-3 px-4 rounded-md font-medium hover:opacity-90 transition">
+                        Analyze Financial Stability
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="resultsSection" class="hidden space-y-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <h2 class="text-2xl font-light brand-teal">Assessment Results</h2>
+                <button onclick="startNewAnalysis()"
+                    class="border-2 border-brand-burgundy brand-burgundy py-2 px-4 rounded-md font-medium hover-burgundy transition">
+                    New Assessment
+                </button>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-6">
+                <!-- Main Results -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="mb-6">
+                            <h3 class="text-xl font-semibold mb-2" id="candidateNameDisplay"></h3>
+                            <p class="text-gray-600" id="locationDisplay"></p>
+                        </div>
+
+                        <div class="mb-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-gray-700">Financial Stability</span>
+                                <span id="stabilityBadge" class="stability-badge"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <h4 class="font-semibold mb-3">Analysis Summary</h4>
+                            <p id="analysisNotes" class="text-gray-700 leading-relaxed"></p>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-4 mb-6">
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <div class="text-sm text-gray-600 mb-1">Section 8 Limit</div>
+                                <div class="text-lg font-semibold" id="section8Limit">-</div>
+                            </div>
+                            <div class="bg-green-50 p-4 rounded-lg">
+                                <div class="text-sm text-gray-600 mb-1">SNAP Limit</div>
+                                <div class="text-lg font-semibold" id="snapLimit">-</div>
+                            </div>
+                            <div class="bg-purple-50 p-4 rounded-lg">
+                                <div class="text-sm text-gray-600 mb-1">Medicaid Limit</div>
+                                <div class="text-lg font-semibold" id="medicaidLimit">-</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="text-xs text-gray-600" id="dataSourceNote"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cost Breakdown -->
+                <div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-4">Monthly Cost Breakdown</h3>
+                        <canvas id="costChart" class="mb-4"></canvas>
+
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Housing</span>
+                                <span class="font-medium" id="housingCost">-</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Food</span>
+                                <span class="font-medium" id="foodCost">-</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Transportation</span>
+                                <span class="font-medium" id="transportationCost">-</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Healthcare</span>
+                                <span class="font-medium" id="healthcareCost">-</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Other</span>
+                                <span class="font-medium" id="otherCost">-</span>
+                            </div>
+                            <div class="flex justify-between pt-2 border-t border-gray-200">
+                                <span class="font-semibold">Total</span>
+                                <span class="font-semibold" id="totalCost">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div id="loadingOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white rounded-lg p-6 flex items-center gap-4">
+                <div class="loader"></div>
+                <span class="text-lg">Analyzing financial stability...</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Cost of Living Data
+        const costOfLivingData = {
+            "NY": {
+                1: { housing: 1800, food: 450, transportation: 350, healthcare: 450, other: 400, total: 3450 },
+                2: { housing: 2200, food: 650, transportation: 500, healthcare: 600, other: 550, total: 4500 },
+                3: { housing: 2600, food: 850, transportation: 650, healthcare: 750, other: 650, total: 5500 },
+                4: { housing: 3000, food: 1050, transportation: 800, healthcare: 900, other: 750, total: 6500 },
+                5: { housing: 3300, food: 1200, transportation: 900, healthcare: 1000, other: 850, total: 7250 },
+                6: { housing: 3600, food: 1350, transportation: 1000, healthcare: 1100, other: 950, total: 8000 },
+                7: { housing: 3900, food: 1500, transportation: 1100, healthcare: 1200, other: 1050, total: 8750 },
+                8: { housing: 4200, food: 1650, transportation: 1200, healthcare: 1300, other: 1150, total: 9500 }
+            },
+            "CA": {
+                1: { housing: 2000, food: 500, transportation: 400, healthcare: 400, other: 450, total: 3750 },
+                2: { housing: 2500, food: 700, transportation: 550, healthcare: 550, other: 600, total: 4900 },
+                3: { housing: 2900, food: 900, transportation: 700, healthcare: 700, other: 700, total: 5900 },
+                4: { housing: 3300, food: 1100, transportation: 850, healthcare: 850, other: 800, total: 6900 },
+                5: { housing: 3600, food: 1250, transportation: 950, healthcare: 950, other: 900, total: 7650 },
+                6: { housing: 3900, food: 1400, transportation: 1050, healthcare: 1050, other: 1000, total: 8400 },
+                7: { housing: 4200, food: 1550, transportation: 1150, healthcare: 1150, other: 1100, total: 9150 },
+                8: { housing: 4500, food: 1700, transportation: 1250, healthcare: 1250, other: 1200, total: 9900 }
+            },
+            "TX": {
+                1: { housing: 1200, food: 350, transportation: 350, healthcare: 350, other: 350, total: 2600 },
+                2: { housing: 1500, food: 500, transportation: 500, healthcare: 500, other: 450, total: 3450 },
+                3: { housing: 1800, food: 650, transportation: 600, healthcare: 600, other: 550, total: 4200 },
+                4: { housing: 2100, food: 800, transportation: 700, healthcare: 700, other: 650, total: 4950 },
+                5: { housing: 2300, food: 900, transportation: 750, healthcare: 800, other: 700, total: 5450 },
+                6: { housing: 2500, food: 1000, transportation: 800, healthcare: 900, other: 750, total: 5950 },
+                7: { housing: 2700, food: 1100, transportation: 850, healthcare: 1000, other: 800, total: 6450 },
+                8: { housing: 2900, food: 1200, transportation: 900, healthcare: 1100, other: 850, total: 6950 }
+            },
+            "FL": {
+                1: { housing: 1400, food: 400, transportation: 350, healthcare: 400, other: 400, total: 2950 },
+                2: { housing: 1700, food: 550, transportation: 500, healthcare: 550, other: 500, total: 3800 },
+                3: { housing: 2000, food: 700, transportation: 600, healthcare: 650, other: 600, total: 4550 },
+                4: { housing: 2300, food: 850, transportation: 700, healthcare: 750, other: 700, total: 5300 },
+                5: { housing: 2500, food: 950, transportation: 750, healthcare: 850, other: 750, total: 5800 },
+                6: { housing: 2700, food: 1050, transportation: 800, healthcare: 950, other: 800, total: 6300 },
+                7: { housing: 2900, food: 1150, transportation: 850, healthcare: 1050, other: 850, total: 6800 },
+                8: { housing: 3100, food: 1250, transportation: 900, healthcare: 1150, other: 900, total: 7300 }
+            },
+            "IL": {
+                1: { housing: 1300, food: 400, transportation: 350, healthcare: 400, other: 350, total: 2800 },
+                2: { housing: 1600, food: 550, transportation: 500, healthcare: 550, other: 500, total: 3700 },
+                3: { housing: 1900, food: 700, transportation: 600, healthcare: 650, other: 600, total: 4450 },
+                4: { housing: 2200, food: 850, transportation: 700, healthcare: 750, other: 700, total: 5200 },
+                5: { housing: 2400, food: 950, transportation: 750, healthcare: 850, other: 750, total: 5700 },
+                6: { housing: 2600, food: 1050, transportation: 800, healthcare: 950, other: 800, total: 6200 },
+                7: { housing: 2800, food: 1150, transportation: 850, healthcare: 1050, other: 850, total: 6700 },
+                8: { housing: 3000, food: 1250, transportation: 900, healthcare: 1150, other: 900, total: 7200 }
+            },
+            "CO": {
+                1: { housing: 1600, food: 450, transportation: 350, healthcare: 400, other: 400, total: 3200 },
+                2: { housing: 2000, food: 600, transportation: 500, healthcare: 550, other: 550, total: 4200 },
+                3: { housing: 2400, food: 800, transportation: 650, healthcare: 700, other: 650, total: 5200 },
+                4: { housing: 2800, food: 1000, transportation: 800, healthcare: 850, other: 750, total: 6200 },
+                5: { housing: 3100, food: 1150, transportation: 900, healthcare: 950, other: 850, total: 6950 },
+                6: { housing: 3400, food: 1300, transportation: 1000, healthcare: 1050, other: 950, total: 7700 },
+                7: { housing: 3700, food: 1450, transportation: 1100, healthcare: 1150, other: 1050, total: 8450 },
+                8: { housing: 4000, food: 1600, transportation: 1200, healthcare: 1250, other: 1150, total: 9200 }
+            },
+            "VA": {
+                1: { housing: 1700, food: 450, transportation: 400, healthcare: 400, other: 400, total: 3350 },
+                2: { housing: 2100, food: 650, transportation: 550, healthcare: 550, other: 550, total: 4400 },
+                3: { housing: 2500, food: 850, transportation: 700, healthcare: 700, other: 650, total: 5400 },
+                4: { housing: 2900, food: 1050, transportation: 850, healthcare: 850, other: 750, total: 6400 },
+                5: { housing: 3200, food: 1200, transportation: 950, healthcare: 950, other: 850, total: 7150 },
+                6: { housing: 3500, food: 1350, transportation: 1050, healthcare: 1050, other: 950, total: 7900 },
+                7: { housing: 3800, food: 1500, transportation: 1150, healthcare: 1150, other: 1050, total: 8650 },
+                8: { housing: 4100, food: 1650, transportation: 1250, healthcare: 1250, other: 1150, total: 9400 }
+            }
+        };
+
+        const nationalAverageCosts = {
+            1: { housing: 1400, food: 400, transportation: 350, healthcare: 400, other: 400, total: 2950 },
+            2: { housing: 1800, food: 600, transportation: 500, healthcare: 550, other: 550, total: 4000 },
+            3: { housing: 2200, food: 800, transportation: 650, healthcare: 700, other: 650, total: 5000 },
+            4: { housing: 2600, food: 1000, transportation: 800, healthcare: 850, other: 750, total: 6000 },
+            5: { housing: 2900, food: 1150, transportation: 900, healthcare: 950, other: 850, total: 6750 },
+            6: { housing: 3200, food: 1300, transportation: 1000, healthcare: 1050, other: 950, total: 7500 },
+            7: { housing: 3500, food: 1450, transportation: 1100, healthcare: 1150, other: 1050, total: 8250 },
+            8: { housing: 3800, food: 1600, transportation: 1200, healthcare: 1250, other: 1150, total: 9000 }
+        };
+
+        const federalSNAP = {
+            1: 20345, 2: 27495, 3: 34645, 4: 41795, 5: 48945,
+            6: 56095, 7: 63245, 8: 70395, additional: 7150
+        };
+
+        const medicaidExpansion = {
+            1: 21597, 2: 29187, 3: 36777, 4: 44367, 5: 51957,
+            6: 59547, 7: 67137, 8: 74727, additional: 7590
+        };
+
+        const nonExpansionMedicaid = {
+            1: 4801, 2: 6501, 3: 8201, 4: 9901, 5: 11601,
+            6: 13301, 7: 15001, 8: 16701, additional: 1700
+        };
+
+        const expansionStates = ['AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'HI', 'ID', 'IL', 'IN', 'IA', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SD', 'UT', 'VT', 'VA', 'WA', 'WV', 'AK'];
+
+        const zipToState = {
+            '10001': { state: 'NY', city: 'New York', county: 'New York' },
+            '90001': { state: 'CA', city: 'Los Angeles', county: 'Los Angeles' },
+            '75001': { state: 'TX', city: 'Dallas', county: 'Dallas' },
+            '33101': { state: 'FL', city: 'Miami', county: 'Miami-Dade' },
+            '60601': { state: 'IL', city: 'Chicago', county: 'Cook' },
+            '80201': { state: 'CO', city: 'Denver', county: 'Denver' },
+            '22201': { state: 'VA', city: 'Arlington', county: 'Arlington' }
+        };
+
+        const section8Limits = {
+            'NY-New York': { 1: 41100, 2: 47000, 3: 52850, 4: 58700, 5: 63400, 6: 68100, 7: 72850, 8: 77550 },
+            'CA-Los Angeles': { 1: 44100, 2: 50400, 3: 56650, 4: 62900, 5: 67950, 6: 73000, 7: 78000, 8: 83050 },
+            'TX-Dallas': { 1: 35500, 2: 40550, 3: 45600, 4: 50650, 5: 54750, 6: 58800, 7: 62850, 8: 66950 },
+            'FL-Miami-Dade': { 1: 34700, 2: 39650, 3: 44600, 4: 49550, 5: 53550, 6: 57500, 7: 61500, 8: 65450 },
+            'IL-Cook': { 1: 39850, 2: 45550, 3: 51200, 4: 56900, 5: 61450, 6: 66000, 7: 70550, 8: 75100 },
+            'CO-Denver': { 1: 42500, 2: 48550, 3: 54650, 4: 60700, 5: 65550, 6: 70450, 7: 75300, 8: 80150 },
+            'VA-Arlington': { 1: 59500, 2: 68000, 3: 76500, 4: 85000, 5: 91850, 6: 98650, 7: 105500, 8: 112300 }
+        };
+
+        let currentAnalysis = null;
+        let costChart = null;
+
+        document.getElementById('assessmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            analyzeFinancialStability();
+        });
+
+        function analyzeFinancialStability() {
+            const name = document.getElementById('candidateName').value;
+            const zipCode = document.getElementById('zipCode').value;
+            const householdSize = parseInt(document.getElementById('householdSize').value);
+            const householdIncome = parseInt(document.getElementById('householdIncome').value);
+
+            showLoading(true);
+            hideError();
+
+            setTimeout(() => {
+                try {
+                    const location = zipToState[zipCode];
+                    if (!location) {
+                        showError(`ZIP code ${zipCode} not found. This demo supports: 10001 (NY), 90001 (CA), 75001 (TX), 33101 (FL), 60601 (IL), 80201 (CO), 22201 (VA)`);
+                        showLoading(false);
+                        return;
+                    }
+
+                    const { state, city, county } = location;
+                    const section8Key = `${state}-${county}`;
+                    const section8Data = section8Limits[section8Key] || {};
+                    const section8Limit = section8Data[Math.min(householdSize, 8)] || 0;
+
+                    const snapLimit = findThreshold(federalSNAP, householdSize);
+                    const medicaidLimit = findThreshold(
+                        expansionStates.includes(state) ? medicaidExpansion : nonExpansionMedicaid,
+                        householdSize
+                    );
+
+                    const lookupSize = Math.min(householdSize, 8);
+                    const stateData = costOfLivingData[state] || nationalAverageCosts;
+                    const costs = stateData[lookupSize] || nationalAverageCosts[lookupSize];
+
+                    const monthlyIncome = householdIncome / 12;
+                    const failingThresholds = [];
+
+                    if (section8Limit > 0 && householdIncome <= section8Limit) failingThresholds.push("Section 8");
+                    if (snapLimit > 0 && householdIncome <= snapLimit) failingThresholds.push("SNAP");
+                    if (medicaidLimit > 0 && householdIncome <= medicaidLimit) failingThresholds.push("Medicaid");
+
+                    let stabilityLevel = '';
+                    let analysisNotes = '';
+
+                    if (failingThresholds.length > 0) {
+                        stabilityLevel = 'unstable';
+                        analysisNotes = `The household income of $${householdIncome.toLocaleString()} is at or below the threshold for ${failingThresholds.join(' and ')} benefits, indicating financial instability for a gestational carrier journey.`;
+                    } else {
+                        const monthlySurplus = monthlyIncome - costs.total;
+                        if (monthlySurplus < 0) {
+                            stabilityLevel = 'unstable';
+                            analysisNotes = `While above public benefit thresholds, monthly income ($${monthlyIncome.toLocaleString('en-US', { maximumFractionDigits: 0 })}) falls short of estimated living costs ($${costs.total.toLocaleString()}), creating financial strain.`;
+                        } else if (monthlySurplus < costs.total * 0.15) {
+                            stabilityLevel = 'borderline';
+                            analysisNotes = `The household is self-sufficient but has a minimal monthly surplus of $${monthlySurplus.toLocaleString('en-US', { maximumFractionDigits: 0 })}, indicating tight finances with little room for unexpected expenses.`;
+                        } else {
+                            stabilityLevel = 'stable';
+                            analysisNotes = `The household shows strong financial stability with income of $${householdIncome.toLocaleString()} well above benefit thresholds and a healthy monthly surplus of $${monthlySurplus.toLocaleString('en-US', { maximumFractionDigits: 0 })}.`;
+                        }
+                    }
+
+                    currentAnalysis = {
+                        name, zipCode, city, state, county, householdSize, householdIncome,
+                        section8Limit, snapLimit, medicaidLimit, costs, stabilityLevel, analysisNotes
+                    };
+
+                    displayResults();
+                    showLoading(false);
+
+                } catch (error) {
+                    console.error(error);
+                    showError('An error occurred during analysis. Please try again.');
+                    showLoading(false);
+                }
+            }, 800);
+        }
+
+        function findThreshold(thresholds, size) {
+            if (size <= 8) return thresholds[size];
+            return thresholds[8] + ((size - 8) * thresholds.additional);
+        }
+
+        function displayResults() {
+            document.getElementById('candidateNameDisplay').textContent = currentAnalysis.name;
+            document.getElementById('locationDisplay').textContent = `${currentAnalysis.city}, ${currentAnalysis.state} ${currentAnalysis.zipCode} (Household of ${currentAnalysis.householdSize})`;
+
+            const badge = document.getElementById('stabilityBadge');
+            badge.textContent = currentAnalysis.stabilityLevel;
+            badge.className = `stability-badge stability-${currentAnalysis.stabilityLevel}`;
+
+            document.getElementById('analysisNotes').textContent = currentAnalysis.analysisNotes;
+            document.getElementById('section8Limit').textContent = currentAnalysis.section8Limit > 0 ? `$${currentAnalysis.section8Limit.toLocaleString()}` : 'N/A';
+            document.getElementById('snapLimit').textContent = `$${currentAnalysis.snapLimit.toLocaleString()}`;
+            document.getElementById('medicaidLimit').textContent = `$${currentAnalysis.medicaidLimit.toLocaleString()}`;
+
+            const costs = currentAnalysis.costs;
+            document.getElementById('housingCost').textContent = `$${costs.housing.toLocaleString()}`;
+            document.getElementById('foodCost').textContent = `$${costs.food.toLocaleString()}`;
+            document.getElementById('transportationCost').textContent = `$${costs.transportation.toLocaleString()}`;
+            document.getElementById('healthcareCost').textContent = `$${costs.healthcare.toLocaleString()}`;
+            document.getElementById('otherCost').textContent = `$${costs.other.toLocaleString()}`;
+            document.getElementById('totalCost').textContent = `$${costs.total.toLocaleString()}`;
+
+            document.getElementById('dataSourceNote').textContent =
+                `Data based on FY 2025 HUD Section 8 limits, 2025 Federal Poverty Guidelines (SNAP/Medicaid), and ${costOfLivingData[currentAnalysis.state] ? 'state-specific' : 'national average'} cost of living estimates.`;
+
+            updateCostChart(costs);
+
+            document.getElementById('inputForm').classList.add('hidden');
+            document.getElementById('resultsSection').classList.remove('hidden');
+        }
+
+        function updateCostChart(costs) {
+            const ctx = document.getElementById('costChart').getContext('2d');
+
+            if (costChart) costChart.destroy();
+
+            costChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Housing', 'Food', 'Transportation', 'Healthcare', 'Other'],
+                    datasets: [{
+                        data: [costs.housing, costs.food, costs.transportation, costs.healthcare, costs.other],
+                        backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+
+        function startNewAnalysis() {
+            currentAnalysis = null;
+            document.getElementById('assessmentForm').reset();
+            document.getElementById('inputForm').classList.remove('hidden');
+            document.getElementById('resultsSection').classList.add('hidden');
+            hideError();
+        }
+
+        function showLoading(show) {
+            document.getElementById('loadingOverlay').classList.toggle('hidden', !show);
+        }
+
+        function showError(message) {
+            document.getElementById('errorMessage').textContent = message;
+            document.getElementById('errorContainer').classList.remove('hidden');
+        }
+
+        function hideError() {
+            document.getElementById('errorContainer').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
