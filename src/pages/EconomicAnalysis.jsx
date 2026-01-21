@@ -18,14 +18,18 @@ export default function EconomicAnalysis() {
     const [error, setError] = useState(null);
 
     const analyzeCandidate = async (formData) => {
+        console.log('🔍 Starting analysis with formData:', formData);
         setIsAnalyzing(true);
         setError(null);
 
         try {
             // Step 1: Get location info from ZIP code (includes county!)
+            console.log('📍 Looking up ZIP code:', formData.zip_code);
             const locationData = await getLocationFromZip(formData.zip_code);
+            console.log('📍 Location data received:', locationData);
 
             if (locationData.error) {
+                console.error('❌ Location lookup error:', locationData.error);
                 setError(locationData.error);
                 setIsAnalyzing(false);
                 return;
