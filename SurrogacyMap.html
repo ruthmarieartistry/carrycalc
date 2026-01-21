@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>US Surrogacy Law Navigator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .search-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+
+        .search-section {
+            margin-bottom: 25px;
+        }
+
+        .search-section label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .state-select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .state-select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .state-select:hover {
+            border-color: #667eea;
+        }
+
+        .filter-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .filter-group {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .filter-group h3 {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .filter-option input[type="checkbox"] {
+            margin-right: 8px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .filter-option label {
+            font-weight: normal;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .results-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: none;
+        }
+
+        .results-card.active {
+            display: block;
+        }
+
+        .state-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #f0f0f0;
+        }
+
+        .state-title {
+            font-size: 2rem;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .rating {
+            font-size: 1.5rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-friendly {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-restricted {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-unclear {
+            background: #e2e3e5;
+            color: #383d41;
+        }
+
+        .status-prohibited {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .info-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .info-item h3 {
+            font-size: 0.85rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .info-item p {
+            font-size: 1rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .summary-section {
+            background: linear-gradient(135deg, #667eea15, #764ba215);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .summary-section h2 {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .summary-section p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .key-points {
+            margin-top: 25px;
+        }
+
+        .key-points h2 {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .key-points ul {
+            list-style: none;
+        }
+
+        .key-points li {
+            padding: 12px;
+            background: #f8f9fa;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            position: relative;
+            padding-left: 35px;
+        }
+
+        .key-points li:before {
+            content: "✓";
+            position: absolute;
+            left: 12px;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .statute-box {
+            background: #fff9e6;
+            border: 2px solid #ffd700;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+        }
+
+        .statute-box h3 {
+            font-size: 1rem;
+            color: #856404;
+            margin-bottom: 8px;
+        }
+
+        .statute-box p {
+            font-size: 0.95rem;
+            color: #666;
+            font-family: 'Courier New', monospace;
+        }
+
+        .state-list {
+            margin-top: 30px;
+        }
+
+        .state-list h2 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .state-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .state-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .state-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+
+        .state-card h3 {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .state-card .rating {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .state-card .status {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .state-title {
+                font-size: 1.5rem;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🗺️ US Surrogacy Law Navigator</h1>
+            <p>Comprehensive state-by-state surrogacy law information</p>
+        </div>
+
+        <div class="search-card">
+            <div class="search-section">
+                <label for="stateSelect">Select a State</label>
+                <select id="stateSelect" class="state-select">
+                    <option value="">Choose a state...</option>
+                </select>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-group">
+                    <h3>Legal Status</h3>
+                    <div class="filter-option">
+                        <input type="checkbox" id="filterFriendly" value="Surrogacy-Friendly">
+                        <label for="filterFriendly">Surrogacy-Friendly</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="filterRestricted" value="Permitted with Restrictions">
+                        <label for="filterRestricted">Restricted</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="filterUnclear" value="Unclear/No Statute">
+                        <label for="filterUnclear">Unclear/No Statute</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="filterProhibited" value="Prohibited">
+                        <label for="filterProhibited">Prohibited</label>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Requirements</h3>
+                    <div class="filter-option">
+                        <input type="checkbox" id="filterPreBirth" value="pre_birth">
+                        <label for="filterPreBirth">Pre-birth Orders</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="filterSameSex" value="same_sex">
+                        <label for="filterSameSex">Same-sex Couples</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="filterSingle" value="single">
+                        <label for="filterSingle">Single Parents</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="filterInternational" value="international">
+                        <label for="filterInternational">International IPs</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="resultsCard" class="results-card"></div>
+
+        <div id="stateList" class="state-list">
+            <h2>All States</h2>
+            <div id="stateGrid" class="state-grid"></div>
+        </div>
+    </div>
+
+    <script>
+        // Embedded surrogacy laws database
+        const surrogacyData = {
+  "metadata": {
+    "title": "US Surrogacy Laws Database",
+    "description": "Comprehensive database of surrogacy laws across all 50 US states and DC",
+    "last_updated": "2025",
+    "version": "1.0"
+  },
+  "states": {
+    "AL": {"name": "Alabama","legal_status": "Unclear/No Statute","rating": "⭐⭐","compensated_surrogacy": "Not regulated","pre_birth_orders": "No","same_sex_couples": "Limited","single_parents": "Limited","international_ips": "Not recommended","statute": "No specific statute","summary": "Alabama has no surrogacy statute. Very limited practice, generally unfriendly legal climate. Post-birth adoption likely required.","key_points": ["No surrogacy legislation","Hostile legal climate","Post-birth adoption required","Not recommended for surrogacy","Very few practitioners"]},
+    "AK": {"name": "Alaska","legal_status": "Unclear/No Statute","rating": "⭐⭐⭐","compensated_surrogacy": "Not regulated","pre_birth_orders": "Limited","same_sex_couples": "Yes","single_parents": "Limited","international_ips": "Limited","statute": "No specific statute","summary": "Alaska has no surrogacy statute but some practice exists. Legal pathway unclear, outcomes vary by case.","key_points": ["No statutory framework","Limited surrogacy practice","Some courts may grant orders","Legal uncertainty","Limited practitioner availability"]},
+    "AZ": {"name": "Arizona","legal_status": "Prohibited","rating": "❌","compensated_surrogacy": "Prohibited","pre_birth_orders": "No","same_sex_couples": "N/A","single_parents": "N/A","international_ips": "N/A","statute": "Arizona Revised Statutes § 25-218","summary": "Arizona prohibits all surrogacy agreements. Contracts are void and unenforceable, regardless of compensation.","key_points": ["All surrogacy contracts void","Both compensated and altruistic prohibited","No legal recognition","Criminal penalties possible","NOT recommended for surrogacy"]},
+    "AR": {"name": "Arkansas","legal_status": "Surrogacy-Friendly","rating": "⭐⭐⭐⭐⭐","compensated_surrogacy": "Permitted","pre_birth_orders": "Yes","same_sex_couples": "Yes","single_parents": "Yes","international_ips": "Yes","statute": "Arkansas Code § 9-10-201","summary": "Arkansas has favorable surrogacy laws. Pre-birth orders available regardless of genetic connection or family type.","key_points": ["Surrogacy-friendly statute","Pre-birth orders routinely granted","No genetic connection requirement","All family types supported","Clear legal framework"]},
+    "CA": {"name": "California","legal_status": "Surrogacy-Friendly","rating": "⭐⭐⭐⭐⭐","compensated_surrogacy": "Permitted","pre_birth_orders": "Yes","same_sex_couples": "Yes","single_parents": "Yes","international_ips": "Yes","statute": "California Family Code §§ 7960-7962","summary": "California is one of the most surrogacy-friendly states. Compensated surrogacy agreements are expressly permitted and enforceable. Pre-birth orders are available regardless of genetic connection, marital status, or sexual orientation.","key_points": ["Gestational surrogacy expressly permitted","Pre-birth parentage orders available","No restrictions on marital status or sexual orientation","International intended parents permitted","Well-established legal precedent"]},
+    "CO": {"name": "Colorado","legal_status": "Surrogacy-Friendly","rating": "⭐⭐⭐⭐⭐","compensated_surrogacy": "Permitted","pre_birth_orders": "Yes","same_sex_couples": "Yes","single_parents": "Yes","international_ips": "Yes","statute": "Colorado Revised Statutes § 19-4-100","summary": "Colorado enacted comprehensive surrogacy legislation in 2021. The state welcomes all types of intended parents with clear legal protections.","key_points": ["Colorado Surrogacy Agreement Act (2021)","Pre-birth parentage orders available","No restrictions based on marital status or sexual orientation","Clear statutory protections","Surrogate rights protected"]},
+    "CT": {"name": "Connecticut","legal_status": "Surrogacy-Friendly","rating": "⭐⭐⭐⭐⭐","compensated_surrogacy": "Permitted","pre_birth_orders": "Yes","same_sex_couples": "Yes","single_parents": "Yes","international_ips": "Yes","statute": "Connecticut General Statutes § 7-48a","summary": "Connecticut has favorable surrogacy laws with statutory support for gestational agreements and pre-birth orders available to all intended parents.","key_points": ["Gestational surrogacy agreements enforceable","Pre-birth orders available","No marital status or sexual orientation restrictions","Clear statutory framework","International IPs generally permitted"]},
+    "DE": {"name": "Delaware","legal_status": "Surrogacy-Friendly","rating": "⭐⭐⭐⭐","compensated_surrogacy": "Permitted","pre_birth_orders": "Yes","same_sex_couples": "Yes","single_parents": "Yes","international_ips": "Yes","statute": "Delaware Code Title 13, § 8-801","summary": "Delaware enacted the Gestational Carrier Agreement Act providing statutory framework for surrogacy.","key_points": ["Gestational Carrier Agreement Act","Pre-birth orders available","No restrictions on family type","Court approval required","Clear legal framework"]},
+    "FL": {"name": "Florida","legal_status": "Permitted with Restrictions","rating": "⭐⭐⭐⭐","compensated_surrogacy": "Permitted (with restrictions)","pre_birth_orders": "Yes (with restrictions)","same_sex_couples": "Yes","single_parents": "Limited","international_ips": "Limited","statute": "Florida Statutes § 742.15","summary": "Florida permits gestational surrogacy but requires at least one intended parent to be genetically related to the child. Pre-birth orders available for married couples.","key_points": ["Genetic connection required for at least one IP","Intended parents must be legally married","Pre-birth orders available for qualifying couples","Surrogate must have given birth previously","Medical and psychological evaluations required"]},
+    "GA": {"name": "Georgia","legal_status": "Unclear/No Statute","rating": "⭐⭐⭐","compensated_surrogacy": "Not regulated","pre_birth_orders": "Limited","same_sex_couples": "Yes","single_parents": "Limited","international_ips": "Limited","statute": "No specific statute","summary": "Georgia has no surrogacy statute but practice occurs. Some courts will grant pre-birth orders, legal outcome case-dependent.","key_points": ["No statutory framework","Practice varies by county","Some courts grant pre-birth orders","Legal uncertainty exists","Experienced local attorney needed"]},
+    "HI": {"name": "Hawaii","legal_status": "Unclear/No Statute","rating": "⭐⭐⭐","compensated_surrogacy": "Not regulated","pre_birth_orders": "Limited","same_sex_couples": "Yes","single_parents": "Limited","international_ips": "Limited","statute": "No specific statute","summary": "Hawaii has no surrogacy statute. Practice occurs but legal pathway unclear. Some courts grant parentage orders.","key_points": ["No statutory framework","Practice varies by court","Some successful cases","Legal uncertainty exists","Experienced attorney needed"]},
+    "ID": {"name": "Idaho","legal_status": "Unclear/No Statute","rating": "⭐⭐","compensated_surrogacy": "Not regulated","pre_birth_orders": "No","same_sex_couples": "Limited","single_parents": "Limited","international_ips": "Not recommended","statute": "No specific statute","summary": "Idaho has no surrogacy law and generally unfriendly climate. Not recommended for surrogacy arrangements.","key_points": ["No surrogacy legislation","Unfriendly legal climate","Post-birth adoption likely required","Very limited practice","Not recommended"]},
+    "IL": {"name": "Illinois","legal_status": "Surrogacy-Friendly","rating": "⭐⭐⭐⭐⭐","compensated_surrogacy": "Permitted","pre_birth_orders": "Yes","same_sex_couples": "Yes","single_parents": "Yes","international_ips": "Yes","statute": "Illinois Gestational Surrogacy Act (750 ILCS 47)","summary": "Illinois has comprehensive surrogacy legislation. The Gestational Surrogacy Act provides clear legal framework for all types of intended parents.","key_points": ["Gestational Surrogacy Act provides statutory framework","Pre-birth orders available","All family types protected","Detailed requirements for surrogacy agreements","Well-established practice"]},
+    "IN": {"name": "Indiana","legal_status": "Prohibited","rating": "❌","compensated_surrogacy": "Prohibited","pre_birth_orders": "No","same_sex_couples": "N/A","single_parents": "N/A","international_ips": "N/A","statute": "Indiana Code § 31-20-1","summary": "Indiana prohibits compensated surrogacy. Surrogacy contracts are void and unenforceable.","key_points": ["Compensated surrogacy prohibited","Contracts void and unenforceable","Altruistic surrogacy may be permitted","Limited legal options","NOT recommended for compensated surrogacy"]},
+    "IA": {"name": "Iowa","legal_status": "Unclear/No Statute","rating": "⭐⭐⭐","compensated_surrogacy": "Not regulated","pre_birth_orders": "Limited","same_sex_couples": "Yes","single_parents": "Limited","international_ips": "Limited","statute": "No specific statute","summary": "Iowa has no surrogacy statute. Some practice exists with mixed results depending on county.","key_points": ["No statutory framework","Practice varies by county","Some courts grant orders","Legal uncertainty","Experienced attorney essential"]},
+    "KS": {"name": "Kansas","legal_status": "Unclear/No Statute","rating": "⭐⭐⭐","compensated_surrogacy": "Not regulated","pre_birth_orders": "Limited","same_sex_couples": "Limited","single_parents": "Limited","international_ips": "Limited","statute": "No specific statute","summary": "Kansas has no surrogacy law. Limited practice with uncertain outcomes. Legal pathway unclear.","key_points": ["No surrogacy legislation","Limited practice","Some courts grant orders","Legal uncertainty high","Post-birth adoption may be required"]},
+    "KY": {"name": "Kentucky","legal_status": "Prohibited","rating": "❌","compensated_surrogacy": "Prohibited","pre_birth_orders": "No","same_sex_couples": "N/A","single_parents": "N/A","international_ips": "N/A","statute": "Kentucky Revised Statutes § 199.590","summary": "Kentucky prohibits compensated surrogacy. All surrogacy contracts are void and may carry penalties.","key_points": ["Compensated surrogacy illegal","Contracts void and unenforceable","Potential criminal penalties","NOT recommended for surrogacy","Adoption required for non-genetic parent"]},
+    "LA": {"name": "Louisiana","legal_status": "Prohibited","rating": "❌","compensated_surrogacy": "Prohibited","pre_birth_orders": "No","same_sex_couples": "N/A","single_parents": "N/A","international_ips": "N/A","statute": "Louisiana Revised Statutes § 9:2713","summary": "Louisiana prohibits surrogacy agreements. All surrogacy contracts are null and void.","key_points": ["All surrogacy contracts void","Both compensated and altruistic prohibited","No legal recognition","NOT recommended for surrogacy","Adoption required for non-genetic parent"]},
+    "ME": {"name": "Maine","legal_status": "Surrogacy-Friendly","rating": "⭐⭐⭐⭐","compensated_surrogacy": "Permitted","pre_birth_orders": "Yes","same_sex_couples": "Yes","single_parents": "Yes","international_ips": "Yes","statute": "Maine Revised Statutes Title 19-A, § 1931","summary": "Maine has statutory support for surrogacy through the Uniform Parentage Act. Pre-birth orders available.","key_points": ["Uniform Parentage Act framework","Pre-birth orders available","All family types supported","Clear legal process","Surrogacy-friendly courts"]},
+    "MD": {"name": "Maryland","legal_status": "Surrogacy-Friendly","rating": "⭐⭐⭐⭐⭐","compensated_surrogacy": "Permitted","pre_birth_orders": "Yes","same_sex_couples": "Yes","single_parents": "Yes","international_ips": "Yes","statute": "Maryland Family Law § 5-1001","summary": "Maryland enacted comprehensive surrogacy legislation in 2022. Very surrogacy-friendly with clear legal framework.","key_points": ["Surrogacy statute enacted 2022","Pre-birth orders available","All family types supported","Clear statutory protections","Strong legal framework"]},
+    "MA": {"name": "Massachusetts","legal_status": "Surrogacy-Friendly","rating": "⭐⭐⭐⭐","compensated_surrogacy": "Permitted","pre_birth_orders": "Post-birth orders","same_sex_couples": "Yes","single_parents": "Yes","international_ips": "Yes","statute": "Massachusetts Parentage Act (2022)","summary": "Massachusetts enacted the Parentage Act in 2022, providing clear framework for surrogacy. Post-birth parentage orders are standard.","key_points": ["Parentage Act legalized compensated surrogacy (2022)","Post-birth parentage orders (not pre-birth)","All family types supported","Comprehensive regulations","Surrogate protections included"]},
+    "MI": {"name": "Michigan","legal_status": "Prohibited","rating": "❌","compensated_surrogacy": "Prohibited","pre_birth_orders": "No","same_sex_couples": "N/A","single_parents": "N/A","international_ips": "N/A","statute": "Michigan Compiled Laws § 722.851","summary": "Michigan prohibits compensated surrogacy agreements. Surrogacy contracts are void and unenforceable. Criminal penalties may apply.","key_points": ["Compensated surrogacy is illegal","Surrogacy contracts void and unenforceable","Criminal penalties possible","Altruistic surrogacy also discouraged","NOT recommended for surrogacy"]},
+    "MN": {"name": "Minnesota","legal_status": "Unclear/No Statute","rating": "⭐⭐⭐","compensated_surrogacy": "Not regulated","pre_birth_orders": "Limited","same_sex_couples": "Yes","single_parents": "Limited","international_ips": "Limited","statute": "No specific statute","summary": "Minnesota has no surrogacy statute. Practice occurs with varying results depending on county.","key_points": ["No statutory framework","Practice varies by county","Some courts grant orders","Legal uncertainty exists","Post-birth adoption may be required"]},
+    "MS": {"name": "Mississippi","legal_status": "Unclear/No Statute","rating": "⭐⭐","compensated_surrogacy": "Not regulated","pre_birth_orders": "No","same_sex_couples": "Limited","single_parents": "Limited","international_ips": "Not recommended","statute": "No specific statute","summary": "Mississippi has no surrogacy law and generally hostile climate. Very limited practice, not recommended.","key_points": ["No surrogacy legislation","Hostile legal climate","Very limited practice","Post-birth adoption required","Not recommended"]},
+    "MO": {"name": "Missouri","legal_status": "Unclear/No Statute","rating": "⭐⭐⭐","compensated_surrogacy": "Not regulated","pre_birth_orders": "Limited","same_sex_couples": "Limited","single_parents": "Limited","international_ips": "Limited","statute": "No specific statute","summary": "Missouri has no surrogacy statute. Limited practice with uncertain legal outcomes.","key_points": ["No statutory framework","Practice varies by court","Some courts grant orders","Legal uncertainty","Experienced attorney needed"]},
+    "MT": {"name": "Montana","legal_status": "Unclear/No Statute","rating": "⭐⭐⭐","compensated_surrogacy": "Not regulated","pre_birth_orders": "Limited","same_sex_couples": "Yes","single_parents": "Limited","international_ips": "Limited","statute": "No specific statute","summary": "Montana has no surrogacy statute. Limited practice, outcomes vary by case.","key_points": ["No surrogacy legislation","Limited practice","Legal pathway unclear","Some courts may grant orders","High uncertainty"]},
+    "NE": {"name": "Nebraska","legal_status": "Prohibited","rating": "❌","compensated_surrogacy": "Prohibited","pre_birth_orders": "No","same_sex_couples": "N/A","single_parents": "N/A","international_ips": "N/A","statute": "Nebraska Revised Statutes § 25-21,200","summary": "Nebraska prohibits surrogacy agreements. Contracts are void and unenforceable.","key_points": ["Surrogacy contracts void","Compensated surrogacy prohibited","No legal framework","NOT recommended for surrogacy","Limited options for intended parents"]},
+    "NV": {"name": "Nevada","legal_status": "Surrogacy-Friendly","rating": "⭐⭐⭐⭐⭐","compensated_surrogacy": "Permitted","pre_birth_orders": "Yes","same_sex_couples": "Yes","single_parents": "Yes","international_ips": "Yes","statute": "Nevada Revised Statutes § 126.045","summary": "Nevada has favorable surrogacy laws with minimal restrictions. The state welcomes all types of intended parents.","key_points": ["Gestational surrogacy expressly permitted","Pre-birth orders available","No marital status restrictions","International IPs generally accepted","Straightforward legal process"]},
+    "NH": {"name": "New Hampshire","legal_status": "Permitted with Restrictions","rating": "⭐⭐⭐⭐","compensated_surrogacy": "Permitted (with restrictions)","pre_birth_orders": "Yes","same_sex_couples": "Yes","single_parents": "Limited","international_ips": "No","statute": "New Hampshire RSA 168-B","summary": "New Hampshire permits surrogacy with specific requirements. Intended parents must be married and domiciled in NH.","key_points": ["Intended parents must be NH residents","IPs must be married","Pre-birth orders available","No international IPs","Detailed statutory requirements"]},
+    "NJ": {"name": "New Jersey","legal_status": "Surrogacy-Friendly","rating": "⭐⭐⭐⭐⭐","compensated_surrogacy": "Permitted","pre_birth_orders": "Yes","same_sex_couples": "Yes","single_parents": "Yes","international_ips": "Limited","statute": "New Jersey Gestational Carrier Agreement Act (N.J.S.A. 9:17-60)","summary": "New Jersey legalized compensated surrogacy in 2018. The state now has comprehensive surrogacy legislation.","key_points": ["Gestational Carrier Agreement Act (2018)","Pre-birth orders available","All family types supported","Detailed regulations","Strong legal framework"]},
+    "NM": {"name": "New Mexico","legal_status": "Surrogacy-Friendly","rating": "⭐⭐⭐⭐⭐","compensated_surrogacy": "Permitted","pre_birth_orders": "Yes","same_sex_couples": "Yes","single_parents": "Yes","international_ips": "Yes","statute": "New Mexico Uniform Parentage Act","summary": "New Mexico is very surrogacy-friendly. Clear statutory support with pre-birth orders available to all.","key_points": ["Uniform Parentage Act framework","Pre-birth orders available","All family types supported","No restrictions","Well-established practice"]},
+    "NY": {"name": "New York","legal_status": "Surrogacy-Friendly","rating": "⭐⭐⭐⭐⭐","compensated_surrogacy": "Permitted","pre_birth_orders": "Yes","same_sex_couples": "Yes","single_parents": "Yes","international_ips": "Limited","statute": "New York Domestic Relations Law Article 5-C","summary": "As of 2021, New York legalized compensated gestational surrogacy with the Child-Parent Security Act. The state now provides clear legal framework for surrogacy arrangements.","key_points": ["Child-Parent Security Act (2021) legalized compensated surrogacy","Parentage orders available","Surrogate decision-making protections","Some restrictions on international IPs","Comprehensive regulations in place"]},
+    "NC": {"name": "North Carolina","legal_status": "Unclear/No Statute","rating": "⭐⭐⭐","compensated_surrogacy": "Not regulated","pre_birth_orders": "Limited","same_sex_couples": "Yes","single_parents": "Limited","international_ips": "Limited","statute": "No specific statute","summary": "North Carolina has no surrogacy statute. Courts have granted parentage orders in some cases, but legal landscape uncertain.","key_points": ["No statutory framework","Court practice varies","Some successful surrogacy cases","Legal uncertainty","Post-birth adoption may be required"]},
+    "ND": {"name": "North Dakota","legal_status": "Prohibited","rating": "❌","compensated_surrogacy": "Prohibited","pre_birth_orders": "No","same_sex_couples": "N/A","single_parents": "N/A","international_ips": "N/A","statute": "North Dakota Century Code § 14-18-05","summary": "North Dakota prohibits compensated surrogacy. All surrogacy contracts are void and unenforceable.","key_points": ["Compensated surrogacy illegal","Contracts void and unenforceable","No legal framework","NOT recommended for surrogacy","Limited options available"]},
+    "OH": {"name": "Ohio","legal_status": "Unclear/No Statute","rating": "⭐⭐⭐","compensated_surrogacy": "Not regulated","pre_birth_orders": "Limited","same_sex_couples": "Yes","single_parents": "Limited","international_ips": "Limited","statute": "No specific statute","summary": "Ohio has no surrogacy statute. Practice varies widely by county. Some courts grant pre-birth orders.","key_points": ["No statutory framework","Practice varies significantly by county","Some courts friendly, others not","Legal uncertainty","Local attorney essential"]},
+    "OK": {"name": "Oklahoma","legal_status": "Unclear/No Statute","rating": "⭐⭐⭐","compensated_surrogacy": "Not regulated","pre_birth_orders": "Limited","same_sex_couples": "Limited","single_parents": "Limited","international_ips": "Limited","statute": "No specific statute","summary": "Oklahoma has no surrogacy law. Limited practice with unclear legal pathway.","key_points": ["No surrogacy legislation","Limited practice","Legal pathway unclear","Some courts grant orders","Post-birth adoption may be required"]},
+    "OR": {"name": "Oregon","legal_status": "Surrogacy-Friendly","rating": "⭐⭐⭐⭐⭐","compensated_surrogacy": "Permitted","pre_birth_orders": "Yes","same_sex_couples": "Yes","single_parents": "Yes","international_ips": "Yes","statute": "Oregon Revised Statutes § 109.239","summary": "Oregon is very surrogacy-friendly with clear statutory support and well-established practice welcoming all intended parents.","key_points": ["Clear statutory framework","Pre-birth orders routinely granted","No restrictions on family type","International IPs welcomed","Long history of surrogacy-friendly practice"]},
+    "PA": {"name": "Pennsylvania","legal_status": "Unclear/No Statute","rating": "⭐⭐⭐","compensated_surrogacy": "Not regulated","pre_birth_orders": "Case-by-case","same_sex_couples": "Case-by-case","single_parents": "Case-by-case","international_ips": "Case-by-case","statute": "No specific statute","summary": "Pennsylvania has no surrogacy-specific statute. Practice varies by county. Some courts grant pre-birth orders, others require post-birth adoption.","key_points": ["No surrogacy-specific legislation","Practice varies by county","Some courts friendly, others not","Legal uncertainty exists","Experienced attorney essential"]},
+    "RI": {"name": "Rhode Island","legal_status": "Surrogacy-Friendly","rating": "⭐⭐⭐⭐⭐","compensated_surrogacy": "Permitted","pre_birth_orders": "Yes","same_sex_couples": "Yes","single_parents": "Yes","international_ips": "Yes","statute": "Rhode Island General Laws § 15-8.1","summary": "Rhode Island has comprehensive surrogacy legislation. Very surrogacy-friendly with clear protections.","key_points": ["Gestational Carrier statute","Pre-birth orders available","All family types supported","Clear legal framework","Strong protections"]},
+    "SC": {"name": "South Carolina","legal_status": "Unclear/No Statute","rating": "⭐⭐","compensated_surrogacy": "Not regulated","pre_birth_orders": "No","same_sex_couples": "Limited","single_parents": "Limited","international_ips": "Not recommended","statute": "No specific statute","summary": "South Carolina has no surrogacy laws. Practice is uncommon and legal pathway unclear. Not recommended for surrogacy.","key_points": ["No surrogacy legislation","Very limited surrogacy practice","Legal uncertainty high","Post-birth adoption likely required","Not surrogacy-friendly in practice"]},
+    "SD": {"name": "South Dakota","legal_status": "Unclear/No Statute","rating": "⭐⭐","compensated_surrogacy": "Not regulated","pre_birth_orders": "No","same_sex_couples": "Limited","single_parents": "Limited","international_ips": "Not recommended","statute": "No specific statute","summary": "South Dakota has no surrogacy law. Very limited practice, generally unfriendly climate.","key_points": ["No surrogacy legislation","Unfriendly legal climate","Very limited practice","Not recommended","Post-birth adoption required"]},
+    "TN": {"name": "Tennessee","legal_status": "Permitted with Restrictions","rating": "⭐⭐⭐⭐","compensated_surrogacy": "Permitted (with restrictions)","pre_birth_orders": "Yes (with restrictions)","same_sex_couples": "Yes","single_parents": "Limited","international_ips": "Limited","statute": "Tennessee Code § 36-1-102","summary": "Tennessee permits surrogacy with specific requirements. Genetic connection required, court approval needed.","key_points": ["Genetic connection required","Court approval of agreement","Pre-birth orders available","Married couples preferred","Detailed requirements"]},
+    "TX": {"name": "Texas","legal_status": "Permitted with Restrictions","rating": "⭐⭐⭐⭐","compensated_surrogacy": "Permitted (with restrictions)","pre_birth_orders": "Yes (with restrictions)","same_sex_couples": "Yes","single_parents": "Limited","international_ips": "Limited","statute": "Texas Family Code Chapter 160, Subchapter H","summary": "Texas allows gestational agreements under specific conditions. Court validation of agreement required before embryo transfer.","key_points": ["Gestational agreements must be validated by court","At least one IP must provide gamete","Married couples preferred","Court must find arrangement is in best interest of child","Detailed statutory requirements"]},
+    "UT": {"name": "Utah","legal_status": "Permitted with Restrictions","rating": "⭐⭐⭐⭐","compensated_surrogacy": "Permitted (with restrictions)","pre_birth_orders": "Yes (with restrictions)","same_sex_couples": "Yes","single_parents": "Limited","international_ips": "Limited","statute": "Utah Code § 78B-15-801","summary": "Utah permits surrogacy under specific conditions. Court validation required, genetic connection needed.","key_points": ["Court validation required","Genetic connection required","Pre-birth orders available","Married couples preferred","Statutory framework in place"]},
+    "VT": {"name": "Vermont","legal_status": "Surrogacy-Friendly","rating": "⭐⭐⭐⭐","compensated_surrogacy": "Permitted","pre_birth_orders": "Post-birth orders","same_sex_couples": "Yes","single_parents": "Yes","international_ips": "Yes","statute": "Vermont Statutes Title 15C","summary": "Vermont enacted parentage laws in 2018 supporting surrogacy. Post-birth parentage orders are standard practice.","key_points": ["Parentage Act supports surrogacy","Post-birth orders (not pre-birth)","All family types supported","Clear legal framework","Surrogacy agreements enforceable"]},
+    "VA": {"name": "Virginia","legal_status": "Surrogacy-Friendly","rating": "⭐⭐⭐⭐","compensated_surrogacy": "Permitted","pre_birth_orders": "Yes","same_sex_couples": "Yes","single_parents": "Yes","international_ips": "Limited","statute": "Virginia Code § 20-156","summary": "Virginia permits surrogacy with court approval of the surrogacy agreement before conception. Recent updates expanded access.","key_points": ["Court approval required before conception","Genetic connection required for at least one IP","Home study may be required","Surrogacy-friendly courts in practice","Established legal framework"]},
+    "WA": {"name": "Washington","legal_status": "Surrogacy-Friendly","rating": "⭐⭐⭐⭐⭐","compensated_surrogacy": "Permitted","pre_birth_orders": "Yes","same_sex_couples": "Yes","single_parents": "Yes","international_ips": "Yes","statute": "Washington Uniform Parentage Act (RCW 26.26A)","summary": "Washington legalized compensated surrogacy in 2018. The state has comprehensive protections for all parties involved.","key_points": ["Uniform Parentage Act allows compensated surrogacy","Pre-birth orders available","All family structures supported","Surrogacy agreements enforceable","Clear legal framework since 2018"]},
+    "WV": {"name": "West Virginia","legal_status": "Unclear/No Statute","rating": "⭐⭐","compensated_surrogacy": "Not regulated","pre_birth_orders": "No","same_sex_couples": "Limited","single_parents": "Limited","international_ips": "Not recommended","statute": "No specific statute","summary": "West Virginia has no surrogacy law. Very limited practice, generally unfriendly climate.","key_points": ["No surrogacy legislation","Unfriendly legal climate","Very limited practice","Post-birth adoption required","Not recommended"]},
+    "WI": {"name": "Wisconsin","legal_status": "Unclear/No Statute","rating": "⭐⭐⭐","compensated_surrogacy": "Not regulated","pre_birth_orders": "Limited","same_sex_couples": "Yes","single_parents": "Limited","international_ips": "Limited","statute": "No specific statute","summary": "Wisconsin has no surrogacy statute. Limited practice with varying results by county.","key_points": ["No statutory framework","Practice varies by county","Some courts grant orders","Legal uncertainty","Experienced attorney needed"]},
+    "WY": {"name": "Wyoming","legal_status": "Unclear/No Statute","rating": "⭐⭐","compensated_surrogacy": "Not regulated","pre_birth_orders": "No","same_sex_couples": "Limited","single_parents": "Limited","international_ips": "Not recommended","statute": "No specific statute","summary": "Wyoming has no surrogacy law. Very limited practice, generally unfriendly climate.","key_points": ["No surrogacy legislation","Very limited practice","Unfriendly climate","Not recommended","Post-birth adoption required"]},
+    "DC": {"name": "District of Columbia","legal_status": "Surrogacy-Friendly","rating": "⭐⭐⭐⭐⭐","compensated_surrogacy": "Permitted","pre_birth_orders": "Yes","same_sex_couples": "Yes","single_parents": "Yes","international_ips": "Yes","statute": "D.C. Code § 16-401","summary": "DC has comprehensive surrogacy legislation. Very surrogacy-friendly with strong legal protections.","key_points": ["Collaborative Reproduction Act","Pre-birth orders available","All family types supported","Clear legal framework","Strong protections for all parties"]}
+  }
+};
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            populateStateDropdown();
+            renderStateGrid();
+            attachEventListeners();
+        });
+
+        // Populate state dropdown
+        function populateStateDropdown() {
+            const select = document.getElementById('stateSelect');
+            const states = Object.keys(surrogacyData.states).sort((a, b) => {
+                return surrogacyData.states[a].name.localeCompare(surrogacyData.states[b].name);
+            });
+
+            states.forEach(code => {
+                const state = surrogacyData.states[code];
+                const option = document.createElement('option');
+                option.value = code;
+                option.textContent = state.name;
+                select.appendChild(option);
+            });
+        }
+
+        // Render state grid
+        function renderStateGrid(filters = {}) {
+            const grid = document.getElementById('stateGrid');
+            grid.innerHTML = '';
+
+            const stateCodes = Object.keys(surrogacyData.states).sort((a, b) => {
+                return surrogacyData.states[a].name.localeCompare(surrogacyData.states[b].name);
+            });
+
+            stateCodes.forEach(code => {
+                const state = surrogacyData.states[code];
+
+                // Apply filters
+                if (filters.legalStatus && filters.legalStatus.length > 0) {
+                    if (!filters.legalStatus.includes(state.legal_status)) return;
+                }
+
+                if (filters.preBirth && (state.pre_birth_orders === "No" || state.pre_birth_orders === "N/A")) return;
+                if (filters.sameSex && (state.same_sex_couples === "No" || state.same_sex_couples === "N/A" || state.same_sex_couples === "Limited")) return;
+                if (filters.single && (state.single_parents === "No" || state.single_parents === "N/A" || state.single_parents === "Limited")) return;
+                if (filters.international && (state.international_ips === "No" || state.international_ips === "N/A" || state.international_ips === "Not recommended")) return;
+
+                const card = document.createElement('div');
+                card.className = 'state-card';
+                card.onclick = () => selectState(code);
+
+                card.innerHTML = `
+                    <h3>${state.name}</h3>
+                    <div class="rating">${state.rating}</div>
+                    <div class="status">${state.legal_status}</div>
+                `;
+
+                grid.appendChild(card);
+            });
+
+            if (grid.children.length === 0) {
+                grid.innerHTML = '<div class="no-results">No states match the selected filters</div>';
+            }
+        }
+
+        // Select state
+        function selectState(stateCode) {
+            const select = document.getElementById('stateSelect');
+            select.value = stateCode;
+            showStateDetails(stateCode);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show state details
+        function showStateDetails(stateCode) {
+            const state = surrogacyData.states[stateCode];
+            const resultsCard = document.getElementById('resultsCard');
+
+            const statusClass = getStatusClass(state.legal_status);
+
+            resultsCard.innerHTML = `
+                <div class="state-header">
+                    <div class="state-title">
+                        <span>${state.name}</span>
+                        <span class="rating">${state.rating}</span>
+                    </div>
+                    <span class="status-badge ${statusClass}">${state.legal_status}</span>
+                </div>
+
+                <div class="summary-section">
+                    <h2>Summary</h2>
+                    <p>${state.summary}</p>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h3>Compensated Surrogacy</h3>
+                        <p>${state.compensated_surrogacy}</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>Pre-birth Orders</h3>
+                        <p>${state.pre_birth_orders}</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>Same-sex Couples</h3>
+                        <p>${state.same_sex_couples}</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>Single Parents</h3>
+                        <p>${state.single_parents}</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>International IPs</h3>
+                        <p>${state.international_ips}</p>
+                    </div>
+                </div>
+
+                ${state.statute !== "No specific statute" ? `
+                <div class="statute-box">
+                    <h3>Legal Reference</h3>
+                    <p>${state.statute}</p>
+                </div>
+                ` : ''}
+
+                <div class="key-points">
+                    <h2>Key Points</h2>
+                    <ul>
+                        ${state.key_points.map(point => `<li>${point}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+
+            resultsCard.classList.add('active');
+        }
+
+        // Get status class
+        function getStatusClass(status) {
+            if (status === "Surrogacy-Friendly") return "status-friendly";
+            if (status === "Permitted with Restrictions") return "status-restricted";
+            if (status === "Unclear/No Statute") return "status-unclear";
+            if (status === "Prohibited") return "status-prohibited";
+            return "";
+        }
+
+        // Attach event listeners
+        function attachEventListeners() {
+            document.getElementById('stateSelect').addEventListener('change', function(e) {
+                if (e.target.value) {
+                    showStateDetails(e.target.value);
+                }
+            });
+
+            // Filter checkboxes
+            const filterCheckboxes = document.querySelectorAll('.filter-option input[type="checkbox"]');
+            filterCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', applyFilters);
+            });
+        }
+
+        // Apply filters
+        function applyFilters() {
+            const filters = {
+                legalStatus: [],
+                preBirth: false,
+                sameSex: false,
+                single: false,
+                international: false
+            };
+
+            // Legal status filters
+            if (document.getElementById('filterFriendly').checked) {
+                filters.legalStatus.push('Surrogacy-Friendly');
+            }
+            if (document.getElementById('filterRestricted').checked) {
+                filters.legalStatus.push('Permitted with Restrictions');
+            }
+            if (document.getElementById('filterUnclear').checked) {
+                filters.legalStatus.push('Unclear/No Statute');
+            }
+            if (document.getElementById('filterProhibited').checked) {
+                filters.legalStatus.push('Prohibited');
+            }
+
+            // Requirement filters
+            filters.preBirth = document.getElementById('filterPreBirth').checked;
+            filters.sameSex = document.getElementById('filterSameSex').checked;
+            filters.single = document.getElementById('filterSingle').checked;
+            filters.international = document.getElementById('filterInternational').checked;
+
+            renderStateGrid(filters);
+        }
+    </script>
+</body>
+</html>

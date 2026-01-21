@@ -1,0 +1,979 @@
+{
+  "metadata": {
+    "title": "US Surrogacy Laws Database",
+    "description": "Comprehensive database of surrogacy laws across all 50 US states and DC",
+    "last_updated": "2025",
+    "version": "1.0"
+  },
+  "states": {
+    "AL": {
+      "name": "Alabama",
+      "legal_status": "Unclear/No Statute",
+      "rating": "⭐⭐",
+      "compensated_surrogacy": "Not regulated",
+      "pre_birth_orders": "No",
+      "same_sex_couples": "Limited",
+      "single_parents": "Limited",
+      "international_ips": "Not recommended",
+      "statute": "No specific statute",
+      "summary": "Alabama has no surrogacy statute. Very limited practice, generally unfriendly legal climate. Post-birth adoption likely required.",
+      "key_points": [
+        "No surrogacy legislation",
+        "Hostile legal climate",
+        "Post-birth adoption required",
+        "Not recommended for surrogacy",
+        "Very few practitioners"
+      ]
+    },
+    "AK": {
+      "name": "Alaska",
+      "legal_status": "Unclear/No Statute",
+      "rating": "⭐⭐⭐",
+      "compensated_surrogacy": "Not regulated",
+      "pre_birth_orders": "Limited",
+      "same_sex_couples": "Yes",
+      "single_parents": "Limited",
+      "international_ips": "Limited",
+      "statute": "No specific statute",
+      "summary": "Alaska has no surrogacy statute but some practice exists. Legal pathway unclear, outcomes vary by case.",
+      "key_points": [
+        "No statutory framework",
+        "Limited surrogacy practice",
+        "Some courts may grant orders",
+        "Legal uncertainty",
+        "Limited practitioner availability"
+      ]
+    },
+    "AZ": {
+      "name": "Arizona",
+      "legal_status": "Prohibited",
+      "rating": "❌",
+      "compensated_surrogacy": "Prohibited",
+      "pre_birth_orders": "No",
+      "same_sex_couples": "N/A",
+      "single_parents": "N/A",
+      "international_ips": "N/A",
+      "statute": "Arizona Revised Statutes § 25-218",
+      "summary": "Arizona prohibits all surrogacy agreements. Contracts are void and unenforceable, regardless of compensation.",
+      "key_points": [
+        "All surrogacy contracts void",
+        "Both compensated and altruistic prohibited",
+        "No legal recognition",
+        "Criminal penalties possible",
+        "NOT recommended for surrogacy"
+      ]
+    },
+    "AR": {
+      "name": "Arkansas",
+      "legal_status": "Surrogacy-Friendly",
+      "rating": "⭐⭐⭐⭐⭐",
+      "compensated_surrogacy": "Permitted",
+      "pre_birth_orders": "Yes",
+      "same_sex_couples": "Yes",
+      "single_parents": "Yes",
+      "international_ips": "Yes",
+      "statute": "Arkansas Code § 9-10-201",
+      "summary": "Arkansas has favorable surrogacy laws. Pre-birth orders available regardless of genetic connection or family type.",
+      "key_points": [
+        "Surrogacy-friendly statute",
+        "Pre-birth orders routinely granted",
+        "No genetic connection requirement",
+        "All family types supported",
+        "Clear legal framework"
+      ]
+    },
+    "CA": {
+      "name": "California",
+      "legal_status": "Surrogacy-Friendly",
+      "rating": "⭐⭐⭐⭐⭐",
+      "compensated_surrogacy": "Permitted",
+      "pre_birth_orders": "Yes",
+      "same_sex_couples": "Yes",
+      "single_parents": "Yes",
+      "international_ips": "Yes",
+      "statute": "California Family Code §§ 7960-7962",
+      "summary": "California is one of the most surrogacy-friendly states. Compensated surrogacy agreements are expressly permitted and enforceable. Pre-birth orders are available regardless of genetic connection, marital status, or sexual orientation.",
+      "key_points": [
+        "Gestational surrogacy expressly permitted",
+        "Pre-birth parentage orders available",
+        "No restrictions on marital status or sexual orientation",
+        "International intended parents permitted",
+        "Well-established legal precedent"
+      ]
+    },
+    "CO": {
+      "name": "Colorado",
+      "legal_status": "Surrogacy-Friendly",
+      "rating": "⭐⭐⭐⭐⭐",
+      "compensated_surrogacy": "Permitted",
+      "pre_birth_orders": "Yes",
+      "same_sex_couples": "Yes",
+      "single_parents": "Yes",
+      "international_ips": "Yes",
+      "statute": "Colorado Revised Statutes § 19-4-100",
+      "summary": "Colorado enacted comprehensive surrogacy legislation in 2021. The state welcomes all types of intended parents with clear legal protections.",
+      "key_points": [
+        "Colorado Surrogacy Agreement Act (2021)",
+        "Pre-birth parentage orders available",
+        "No restrictions based on marital status or sexual orientation",
+        "Clear statutory protections",
+        "Surrogate rights protected"
+      ]
+    },
+    "CT": {
+      "name": "Connecticut",
+      "legal_status": "Surrogacy-Friendly",
+      "rating": "⭐⭐⭐⭐⭐",
+      "compensated_surrogacy": "Permitted",
+      "pre_birth_orders": "Yes",
+      "same_sex_couples": "Yes",
+      "single_parents": "Yes",
+      "international_ips": "Yes",
+      "statute": "Connecticut General Statutes § 7-48a",
+      "summary": "Connecticut has favorable surrogacy laws with statutory support for gestational agreements and pre-birth orders available to all intended parents.",
+      "key_points": [
+        "Gestational surrogacy agreements enforceable",
+        "Pre-birth orders available",
+        "No marital status or sexual orientation restrictions",
+        "Clear statutory framework",
+        "International IPs generally permitted"
+      ]
+    },
+    "DE": {
+      "name": "Delaware",
+      "legal_status": "Surrogacy-Friendly",
+      "rating": "⭐⭐⭐⭐",
+      "compensated_surrogacy": "Permitted",
+      "pre_birth_orders": "Yes",
+      "same_sex_couples": "Yes",
+      "single_parents": "Yes",
+      "international_ips": "Yes",
+      "statute": "Delaware Code Title 13, § 8-801",
+      "summary": "Delaware enacted the Gestational Carrier Agreement Act providing statutory framework for surrogacy.",
+      "key_points": [
+        "Gestational Carrier Agreement Act",
+        "Pre-birth orders available",
+        "No restrictions on family type",
+        "Court approval required",
+        "Clear legal framework"
+      ]
+    },
+    "FL": {
+      "name": "Florida",
+      "legal_status": "Permitted with Restrictions",
+      "rating": "⭐⭐⭐⭐",
+      "compensated_surrogacy": "Permitted (with restrictions)",
+      "pre_birth_orders": "Yes (with restrictions)",
+      "same_sex_couples": "Yes",
+      "single_parents": "Limited",
+      "international_ips": "Limited",
+      "statute": "Florida Statutes § 742.15",
+      "summary": "Florida permits gestational surrogacy but requires at least one intended parent to be genetically related to the child. Pre-birth orders available for married couples.",
+      "key_points": [
+        "Genetic connection required for at least one IP",
+        "Intended parents must be legally married",
+        "Pre-birth orders available for qualifying couples",
+        "Surrogate must have given birth previously",
+        "Medical and psychological evaluations required"
+      ]
+    },
+    "GA": {
+      "name": "Georgia",
+      "legal_status": "Unclear/No Statute",
+      "rating": "⭐⭐⭐",
+      "compensated_surrogacy": "Not regulated",
+      "pre_birth_orders": "Limited",
+      "same_sex_couples": "Yes",
+      "single_parents": "Limited",
+      "international_ips": "Limited",
+      "statute": "No specific statute",
+      "summary": "Georgia has no surrogacy statute but practice occurs. Some courts will grant pre-birth orders, legal outcome case-dependent.",
+      "key_points": [
+        "No statutory framework",
+        "Practice varies by county",
+        "Some courts grant pre-birth orders",
+        "Legal uncertainty exists",
+        "Experienced local attorney needed"
+      ]
+    },
+    "HI": {
+      "name": "Hawaii",
+      "legal_status": "Unclear/No Statute",
+      "rating": "⭐⭐⭐",
+      "compensated_surrogacy": "Not regulated",
+      "pre_birth_orders": "Limited",
+      "same_sex_couples": "Yes",
+      "single_parents": "Limited",
+      "international_ips": "Limited",
+      "statute": "No specific statute",
+      "summary": "Hawaii has no surrogacy statute. Practice occurs but legal pathway unclear. Some courts grant parentage orders.",
+      "key_points": [
+        "No statutory framework",
+        "Practice varies by court",
+        "Some successful cases",
+        "Legal uncertainty exists",
+        "Experienced attorney needed"
+      ]
+    },
+    "ID": {
+      "name": "Idaho",
+      "legal_status": "Unclear/No Statute",
+      "rating": "⭐⭐",
+      "compensated_surrogacy": "Not regulated",
+      "pre_birth_orders": "No",
+      "same_sex_couples": "Limited",
+      "single_parents": "Limited",
+      "international_ips": "Not recommended",
+      "statute": "No specific statute",
+      "summary": "Idaho has no surrogacy law and generally unfriendly climate. Not recommended for surrogacy arrangements.",
+      "key_points": [
+        "No surrogacy legislation",
+        "Unfriendly legal climate",
+        "Post-birth adoption likely required",
+        "Very limited practice",
+        "Not recommended"
+      ]
+    },
+    "IL": {
+      "name": "Illinois",
+      "legal_status": "Surrogacy-Friendly",
+      "rating": "⭐⭐⭐⭐⭐",
+      "compensated_surrogacy": "Permitted",
+      "pre_birth_orders": "Yes",
+      "same_sex_couples": "Yes",
+      "single_parents": "Yes",
+      "international_ips": "Yes",
+      "statute": "Illinois Gestational Surrogacy Act (750 ILCS 47)",
+      "summary": "Illinois has comprehensive surrogacy legislation. The Gestational Surrogacy Act provides clear legal framework for all types of intended parents.",
+      "key_points": [
+        "Gestational Surrogacy Act provides statutory framework",
+        "Pre-birth orders available",
+        "All family types protected",
+        "Detailed requirements for surrogacy agreements",
+        "Well-established practice"
+      ]
+    },
+    "IN": {
+      "name": "Indiana",
+      "legal_status": "Prohibited",
+      "rating": "❌",
+      "compensated_surrogacy": "Prohibited",
+      "pre_birth_orders": "No",
+      "same_sex_couples": "N/A",
+      "single_parents": "N/A",
+      "international_ips": "N/A",
+      "statute": "Indiana Code § 31-20-1",
+      "summary": "Indiana prohibits compensated surrogacy. Surrogacy contracts are void and unenforceable.",
+      "key_points": [
+        "Compensated surrogacy prohibited",
+        "Contracts void and unenforceable",
+        "Altruistic surrogacy may be permitted",
+        "Limited legal options",
+        "NOT recommended for compensated surrogacy"
+      ]
+    },
+    "IA": {
+      "name": "Iowa",
+      "legal_status": "Unclear/No Statute",
+      "rating": "⭐⭐⭐",
+      "compensated_surrogacy": "Not regulated",
+      "pre_birth_orders": "Limited",
+      "same_sex_couples": "Yes",
+      "single_parents": "Limited",
+      "international_ips": "Limited",
+      "statute": "No specific statute",
+      "summary": "Iowa has no surrogacy statute. Some practice exists with mixed results depending on county.",
+      "key_points": [
+        "No statutory framework",
+        "Practice varies by county",
+        "Some courts grant orders",
+        "Legal uncertainty",
+        "Experienced attorney essential"
+      ]
+    },
+    "KS": {
+      "name": "Kansas",
+      "legal_status": "Unclear/No Statute",
+      "rating": "⭐⭐⭐",
+      "compensated_surrogacy": "Not regulated",
+      "pre_birth_orders": "Limited",
+      "same_sex_couples": "Limited",
+      "single_parents": "Limited",
+      "international_ips": "Limited",
+      "statute": "No specific statute",
+      "summary": "Kansas has no surrogacy law. Limited practice with uncertain outcomes. Legal pathway unclear.",
+      "key_points": [
+        "No surrogacy legislation",
+        "Limited practice",
+        "Some courts grant orders",
+        "Legal uncertainty high",
+        "Post-birth adoption may be required"
+      ]
+    },
+    "KY": {
+      "name": "Kentucky",
+      "legal_status": "Prohibited",
+      "rating": "❌",
+      "compensated_surrogacy": "Prohibited",
+      "pre_birth_orders": "No",
+      "same_sex_couples": "N/A",
+      "single_parents": "N/A",
+      "international_ips": "N/A",
+      "statute": "Kentucky Revised Statutes § 199.590",
+      "summary": "Kentucky prohibits compensated surrogacy. All surrogacy contracts are void and may carry penalties.",
+      "key_points": [
+        "Compensated surrogacy illegal",
+        "Contracts void and unenforceable",
+        "Potential criminal penalties",
+        "NOT recommended for surrogacy",
+        "Adoption required for non-genetic parent"
+      ]
+    },
+    "LA": {
+      "name": "Louisiana",
+      "legal_status": "Prohibited",
+      "rating": "❌",
+      "compensated_surrogacy": "Prohibited",
+      "pre_birth_orders": "No",
+      "same_sex_couples": "N/A",
+      "single_parents": "N/A",
+      "international_ips": "N/A",
+      "statute": "Louisiana Revised Statutes § 9:2713",
+      "summary": "Louisiana prohibits surrogacy agreements. All surrogacy contracts are null and void.",
+      "key_points": [
+        "All surrogacy contracts void",
+        "Both compensated and altruistic prohibited",
+        "No legal recognition",
+        "NOT recommended for surrogacy",
+        "Adoption required for non-genetic parent"
+      ]
+    },
+    "ME": {
+      "name": "Maine",
+      "legal_status": "Surrogacy-Friendly",
+      "rating": "⭐⭐⭐⭐",
+      "compensated_surrogacy": "Permitted",
+      "pre_birth_orders": "Yes",
+      "same_sex_couples": "Yes",
+      "single_parents": "Yes",
+      "international_ips": "Yes",
+      "statute": "Maine Revised Statutes Title 19-A, § 1931",
+      "summary": "Maine has statutory support for surrogacy through the Uniform Parentage Act. Pre-birth orders available.",
+      "key_points": [
+        "Uniform Parentage Act framework",
+        "Pre-birth orders available",
+        "All family types supported",
+        "Clear legal process",
+        "Surrogacy-friendly courts"
+      ]
+    },
+    "MD": {
+      "name": "Maryland",
+      "legal_status": "Surrogacy-Friendly",
+      "rating": "⭐⭐⭐⭐⭐",
+      "compensated_surrogacy": "Permitted",
+      "pre_birth_orders": "Yes",
+      "same_sex_couples": "Yes",
+      "single_parents": "Yes",
+      "international_ips": "Yes",
+      "statute": "Maryland Family Law § 5-1001",
+      "summary": "Maryland enacted comprehensive surrogacy legislation in 2022. Very surrogacy-friendly with clear legal framework.",
+      "key_points": [
+        "Surrogacy statute enacted 2022",
+        "Pre-birth orders available",
+        "All family types supported",
+        "Clear statutory protections",
+        "Strong legal framework"
+      ]
+    },
+    "MA": {
+      "name": "Massachusetts",
+      "legal_status": "Surrogacy-Friendly",
+      "rating": "⭐⭐⭐⭐",
+      "compensated_surrogacy": "Permitted",
+      "pre_birth_orders": "Post-birth orders",
+      "same_sex_couples": "Yes",
+      "single_parents": "Yes",
+      "international_ips": "Yes",
+      "statute": "Massachusetts Parentage Act (2022)",
+      "summary": "Massachusetts enacted the Parentage Act in 2022, providing clear framework for surrogacy. Post-birth parentage orders are standard.",
+      "key_points": [
+        "Parentage Act legalized compensated surrogacy (2022)",
+        "Post-birth parentage orders (not pre-birth)",
+        "All family types supported",
+        "Comprehensive regulations",
+        "Surrogate protections included"
+      ]
+    },
+    "MI": {
+      "name": "Michigan",
+      "legal_status": "Prohibited",
+      "rating": "❌",
+      "compensated_surrogacy": "Prohibited",
+      "pre_birth_orders": "No",
+      "same_sex_couples": "N/A",
+      "single_parents": "N/A",
+      "international_ips": "N/A",
+      "statute": "Michigan Compiled Laws § 722.851",
+      "summary": "Michigan prohibits compensated surrogacy agreements. Surrogacy contracts are void and unenforceable. Criminal penalties may apply.",
+      "key_points": [
+        "Compensated surrogacy is illegal",
+        "Surrogacy contracts void and unenforceable",
+        "Criminal penalties possible",
+        "Altruistic surrogacy also discouraged",
+        "NOT recommended for surrogacy"
+      ]
+    },
+    "MN": {
+      "name": "Minnesota",
+      "legal_status": "Unclear/No Statute",
+      "rating": "⭐⭐⭐",
+      "compensated_surrogacy": "Not regulated",
+      "pre_birth_orders": "Limited",
+      "same_sex_couples": "Yes",
+      "single_parents": "Limited",
+      "international_ips": "Limited",
+      "statute": "No specific statute",
+      "summary": "Minnesota has no surrogacy statute. Practice occurs with varying results depending on county.",
+      "key_points": [
+        "No statutory framework",
+        "Practice varies by county",
+        "Some courts grant orders",
+        "Legal uncertainty exists",
+        "Post-birth adoption may be required"
+      ]
+    },
+    "MS": {
+      "name": "Mississippi",
+      "legal_status": "Unclear/No Statute",
+      "rating": "⭐⭐",
+      "compensated_surrogacy": "Not regulated",
+      "pre_birth_orders": "No",
+      "same_sex_couples": "Limited",
+      "single_parents": "Limited",
+      "international_ips": "Not recommended",
+      "statute": "No specific statute",
+      "summary": "Mississippi has no surrogacy law and generally hostile climate. Very limited practice, not recommended.",
+      "key_points": [
+        "No surrogacy legislation",
+        "Hostile legal climate",
+        "Very limited practice",
+        "Post-birth adoption required",
+        "Not recommended"
+      ]
+    },
+    "MO": {
+      "name": "Missouri",
+      "legal_status": "Unclear/No Statute",
+      "rating": "⭐⭐⭐",
+      "compensated_surrogacy": "Not regulated",
+      "pre_birth_orders": "Limited",
+      "same_sex_couples": "Limited",
+      "single_parents": "Limited",
+      "international_ips": "Limited",
+      "statute": "No specific statute",
+      "summary": "Missouri has no surrogacy statute. Limited practice with uncertain legal outcomes.",
+      "key_points": [
+        "No statutory framework",
+        "Practice varies by court",
+        "Some courts grant orders",
+        "Legal uncertainty",
+        "Experienced attorney needed"
+      ]
+    },
+    "MT": {
+      "name": "Montana",
+      "legal_status": "Unclear/No Statute",
+      "rating": "⭐⭐⭐",
+      "compensated_surrogacy": "Not regulated",
+      "pre_birth_orders": "Limited",
+      "same_sex_couples": "Yes",
+      "single_parents": "Limited",
+      "international_ips": "Limited",
+      "statute": "No specific statute",
+      "summary": "Montana has no surrogacy statute. Limited practice, outcomes vary by case.",
+      "key_points": [
+        "No surrogacy legislation",
+        "Limited practice",
+        "Legal pathway unclear",
+        "Some courts may grant orders",
+        "High uncertainty"
+      ]
+    },
+    "NE": {
+      "name": "Nebraska",
+      "legal_status": "Prohibited",
+      "rating": "❌",
+      "compensated_surrogacy": "Prohibited",
+      "pre_birth_orders": "No",
+      "same_sex_couples": "N/A",
+      "single_parents": "N/A",
+      "international_ips": "N/A",
+      "statute": "Nebraska Revised Statutes § 25-21,200",
+      "summary": "Nebraska prohibits surrogacy agreements. Contracts are void and unenforceable.",
+      "key_points": [
+        "Surrogacy contracts void",
+        "Compensated surrogacy prohibited",
+        "No legal framework",
+        "NOT recommended for surrogacy",
+        "Limited options for intended parents"
+      ]
+    },
+    "NV": {
+      "name": "Nevada",
+      "legal_status": "Surrogacy-Friendly",
+      "rating": "⭐⭐⭐⭐⭐",
+      "compensated_surrogacy": "Permitted",
+      "pre_birth_orders": "Yes",
+      "same_sex_couples": "Yes",
+      "single_parents": "Yes",
+      "international_ips": "Yes",
+      "statute": "Nevada Revised Statutes § 126.045",
+      "summary": "Nevada has favorable surrogacy laws with minimal restrictions. The state welcomes all types of intended parents.",
+      "key_points": [
+        "Gestational surrogacy expressly permitted",
+        "Pre-birth orders available",
+        "No marital status restrictions",
+        "International IPs generally accepted",
+        "Straightforward legal process"
+      ]
+    },
+    "NH": {
+      "name": "New Hampshire",
+      "legal_status": "Permitted with Restrictions",
+      "rating": "⭐⭐⭐⭐",
+      "compensated_surrogacy": "Permitted (with restrictions)",
+      "pre_birth_orders": "Yes",
+      "same_sex_couples": "Yes",
+      "single_parents": "Limited",
+      "international_ips": "No",
+      "statute": "New Hampshire RSA 168-B",
+      "summary": "New Hampshire permits surrogacy with specific requirements. Intended parents must be married and domiciled in NH.",
+      "key_points": [
+        "Intended parents must be NH residents",
+        "IPs must be married",
+        "Pre-birth orders available",
+        "No international IPs",
+        "Detailed statutory requirements"
+      ]
+    },
+    "NJ": {
+      "name": "New Jersey",
+      "legal_status": "Surrogacy-Friendly",
+      "rating": "⭐⭐⭐⭐⭐",
+      "compensated_surrogacy": "Permitted",
+      "pre_birth_orders": "Yes",
+      "same_sex_couples": "Yes",
+      "single_parents": "Yes",
+      "international_ips": "Limited",
+      "statute": "New Jersey Gestational Carrier Agreement Act (N.J.S.A. 9:17-60)",
+      "summary": "New Jersey legalized compensated surrogacy in 2018. The state now has comprehensive surrogacy legislation.",
+      "key_points": [
+        "Gestational Carrier Agreement Act (2018)",
+        "Pre-birth orders available",
+        "All family types supported",
+        "Detailed regulations",
+        "Strong legal framework"
+      ]
+    },
+    "NM": {
+      "name": "New Mexico",
+      "legal_status": "Surrogacy-Friendly",
+      "rating": "⭐⭐⭐⭐⭐",
+      "compensated_surrogacy": "Permitted",
+      "pre_birth_orders": "Yes",
+      "same_sex_couples": "Yes",
+      "single_parents": "Yes",
+      "international_ips": "Yes",
+      "statute": "New Mexico Uniform Parentage Act",
+      "summary": "New Mexico is very surrogacy-friendly. Clear statutory support with pre-birth orders available to all.",
+      "key_points": [
+        "Uniform Parentage Act framework",
+        "Pre-birth orders available",
+        "All family types supported",
+        "No restrictions",
+        "Well-established practice"
+      ]
+    },
+    "NY": {
+      "name": "New York",
+      "legal_status": "Surrogacy-Friendly",
+      "rating": "⭐⭐⭐⭐⭐",
+      "compensated_surrogacy": "Permitted",
+      "pre_birth_orders": "Yes",
+      "same_sex_couples": "Yes",
+      "single_parents": "Yes",
+      "international_ips": "Limited",
+      "statute": "New York Domestic Relations Law Article 5-C",
+      "summary": "As of 2021, New York legalized compensated gestational surrogacy with the Child-Parent Security Act. The state now provides clear legal framework for surrogacy arrangements.",
+      "key_points": [
+        "Child-Parent Security Act (2021) legalized compensated surrogacy",
+        "Parentage orders available",
+        "Surrogate decision-making protections",
+        "Some restrictions on international IPs",
+        "Comprehensive regulations in place"
+      ]
+    },
+    "NC": {
+      "name": "North Carolina",
+      "legal_status": "Unclear/No Statute",
+      "rating": "⭐⭐⭐",
+      "compensated_surrogacy": "Not regulated",
+      "pre_birth_orders": "Limited",
+      "same_sex_couples": "Yes",
+      "single_parents": "Limited",
+      "international_ips": "Limited",
+      "statute": "No specific statute",
+      "summary": "North Carolina has no surrogacy statute. Courts have granted parentage orders in some cases, but legal landscape uncertain.",
+      "key_points": [
+        "No statutory framework",
+        "Court practice varies",
+        "Some successful surrogacy cases",
+        "Legal uncertainty",
+        "Post-birth adoption may be required"
+      ]
+    },
+    "ND": {
+      "name": "North Dakota",
+      "legal_status": "Prohibited",
+      "rating": "❌",
+      "compensated_surrogacy": "Prohibited",
+      "pre_birth_orders": "No",
+      "same_sex_couples": "N/A",
+      "single_parents": "N/A",
+      "international_ips": "N/A",
+      "statute": "North Dakota Century Code § 14-18-05",
+      "summary": "North Dakota prohibits compensated surrogacy. All surrogacy contracts are void and unenforceable.",
+      "key_points": [
+        "Compensated surrogacy illegal",
+        "Contracts void and unenforceable",
+        "No legal framework",
+        "NOT recommended for surrogacy",
+        "Limited options available"
+      ]
+    },
+    "OH": {
+      "name": "Ohio",
+      "legal_status": "Unclear/No Statute",
+      "rating": "⭐⭐⭐",
+      "compensated_surrogacy": "Not regulated",
+      "pre_birth_orders": "Limited",
+      "same_sex_couples": "Yes",
+      "single_parents": "Limited",
+      "international_ips": "Limited",
+      "statute": "No specific statute",
+      "summary": "Ohio has no surrogacy statute. Practice varies widely by county. Some courts grant pre-birth orders.",
+      "key_points": [
+        "No statutory framework",
+        "Practice varies significantly by county",
+        "Some courts friendly, others not",
+        "Legal uncertainty",
+        "Local attorney essential"
+      ]
+    },
+    "OK": {
+      "name": "Oklahoma",
+      "legal_status": "Unclear/No Statute",
+      "rating": "⭐⭐⭐",
+      "compensated_surrogacy": "Not regulated",
+      "pre_birth_orders": "Limited",
+      "same_sex_couples": "Limited",
+      "single_parents": "Limited",
+      "international_ips": "Limited",
+      "statute": "No specific statute",
+      "summary": "Oklahoma has no surrogacy law. Limited practice with unclear legal pathway.",
+      "key_points": [
+        "No surrogacy legislation",
+        "Limited practice",
+        "Legal pathway unclear",
+        "Some courts grant orders",
+        "Post-birth adoption may be required"
+      ]
+    },
+    "OR": {
+      "name": "Oregon",
+      "legal_status": "Surrogacy-Friendly",
+      "rating": "⭐⭐⭐⭐⭐",
+      "compensated_surrogacy": "Permitted",
+      "pre_birth_orders": "Yes",
+      "same_sex_couples": "Yes",
+      "single_parents": "Yes",
+      "international_ips": "Yes",
+      "statute": "Oregon Revised Statutes § 109.239",
+      "summary": "Oregon is very surrogacy-friendly with clear statutory support and well-established practice welcoming all intended parents.",
+      "key_points": [
+        "Clear statutory framework",
+        "Pre-birth orders routinely granted",
+        "No restrictions on family type",
+        "International IPs welcomed",
+        "Long history of surrogacy-friendly practice"
+      ]
+    },
+    "PA": {
+      "name": "Pennsylvania",
+      "legal_status": "Unclear/No Statute",
+      "rating": "⭐⭐⭐",
+      "compensated_surrogacy": "Not regulated",
+      "pre_birth_orders": "Case-by-case",
+      "same_sex_couples": "Case-by-case",
+      "single_parents": "Case-by-case",
+      "international_ips": "Case-by-case",
+      "statute": "No specific statute",
+      "summary": "Pennsylvania has no surrogacy-specific statute. Practice varies by county. Some courts grant pre-birth orders, others require post-birth adoption.",
+      "key_points": [
+        "No surrogacy-specific legislation",
+        "Practice varies by county",
+        "Some courts friendly, others not",
+        "Legal uncertainty exists",
+        "Experienced attorney essential"
+      ]
+    },
+    "RI": {
+      "name": "Rhode Island",
+      "legal_status": "Surrogacy-Friendly",
+      "rating": "⭐⭐⭐⭐⭐",
+      "compensated_surrogacy": "Permitted",
+      "pre_birth_orders": "Yes",
+      "same_sex_couples": "Yes",
+      "single_parents": "Yes",
+      "international_ips": "Yes",
+      "statute": "Rhode Island General Laws § 15-8.1",
+      "summary": "Rhode Island has comprehensive surrogacy legislation. Very surrogacy-friendly with clear protections.",
+      "key_points": [
+        "Gestational Carrier statute",
+        "Pre-birth orders available",
+        "All family types supported",
+        "Clear legal framework",
+        "Strong protections"
+      ]
+    },
+    "SC": {
+      "name": "South Carolina",
+      "legal_status": "Unclear/No Statute",
+      "rating": "⭐⭐",
+      "compensated_surrogacy": "Not regulated",
+      "pre_birth_orders": "No",
+      "same_sex_couples": "Limited",
+      "single_parents": "Limited",
+      "international_ips": "Not recommended",
+      "statute": "No specific statute",
+      "summary": "South Carolina has no surrogacy laws. Practice is uncommon and legal pathway unclear. Not recommended for surrogacy.",
+      "key_points": [
+        "No surrogacy legislation",
+        "Very limited surrogacy practice",
+        "Legal uncertainty high",
+        "Post-birth adoption likely required",
+        "Not surrogacy-friendly in practice"
+      ]
+    },
+    "SD": {
+      "name": "South Dakota",
+      "legal_status": "Unclear/No Statute",
+      "rating": "⭐⭐",
+      "compensated_surrogacy": "Not regulated",
+      "pre_birth_orders": "No",
+      "same_sex_couples": "Limited",
+      "single_parents": "Limited",
+      "international_ips": "Not recommended",
+      "statute": "No specific statute",
+      "summary": "South Dakota has no surrogacy law. Very limited practice, generally unfriendly climate.",
+      "key_points": [
+        "No surrogacy legislation",
+        "Unfriendly legal climate",
+        "Very limited practice",
+        "Not recommended",
+        "Post-birth adoption required"
+      ]
+    },
+    "TN": {
+      "name": "Tennessee",
+      "legal_status": "Permitted with Restrictions",
+      "rating": "⭐⭐⭐⭐",
+      "compensated_surrogacy": "Permitted (with restrictions)",
+      "pre_birth_orders": "Yes (with restrictions)",
+      "same_sex_couples": "Yes",
+      "single_parents": "Limited",
+      "international_ips": "Limited",
+      "statute": "Tennessee Code § 36-1-102",
+      "summary": "Tennessee permits surrogacy with specific requirements. Genetic connection required, court approval needed.",
+      "key_points": [
+        "Genetic connection required",
+        "Court approval of agreement",
+        "Pre-birth orders available",
+        "Married couples preferred",
+        "Detailed requirements"
+      ]
+    },
+    "TX": {
+      "name": "Texas",
+      "legal_status": "Permitted with Restrictions",
+      "rating": "⭐⭐⭐⭐",
+      "compensated_surrogacy": "Permitted (with restrictions)",
+      "pre_birth_orders": "Yes (with restrictions)",
+      "same_sex_couples": "Yes",
+      "single_parents": "Limited",
+      "international_ips": "Limited",
+      "statute": "Texas Family Code Chapter 160, Subchapter H",
+      "summary": "Texas allows gestational agreements under specific conditions. Court validation of agreement required before embryo transfer.",
+      "key_points": [
+        "Gestational agreements must be validated by court",
+        "At least one IP must provide gamete",
+        "Married couples preferred",
+        "Court must find arrangement is in best interest of child",
+        "Detailed statutory requirements"
+      ]
+    },
+    "UT": {
+      "name": "Utah",
+      "legal_status": "Permitted with Restrictions",
+      "rating": "⭐⭐⭐⭐",
+      "compensated_surrogacy": "Permitted (with restrictions)",
+      "pre_birth_orders": "Yes (with restrictions)",
+      "same_sex_couples": "Yes",
+      "single_parents": "Limited",
+      "international_ips": "Limited",
+      "statute": "Utah Code § 78B-15-801",
+      "summary": "Utah permits surrogacy under specific conditions. Court validation required, genetic connection needed.",
+      "key_points": [
+        "Court validation required",
+        "Genetic connection required",
+        "Pre-birth orders available",
+        "Married couples preferred",
+        "Statutory framework in place"
+      ]
+    },
+    "VT": {
+      "name": "Vermont",
+      "legal_status": "Surrogacy-Friendly",
+      "rating": "⭐⭐⭐⭐",
+      "compensated_surrogacy": "Permitted",
+      "pre_birth_orders": "Post-birth orders",
+      "same_sex_couples": "Yes",
+      "single_parents": "Yes",
+      "international_ips": "Yes",
+      "statute": "Vermont Statutes Title 15C",
+      "summary": "Vermont enacted parentage laws in 2018 supporting surrogacy. Post-birth parentage orders are standard practice.",
+      "key_points": [
+        "Parentage Act supports surrogacy",
+        "Post-birth orders (not pre-birth)",
+        "All family types supported",
+        "Clear legal framework",
+        "Surrogacy agreements enforceable"
+      ]
+    },
+    "VA": {
+      "name": "Virginia",
+      "legal_status": "Surrogacy-Friendly",
+      "rating": "⭐⭐⭐⭐",
+      "compensated_surrogacy": "Permitted",
+      "pre_birth_orders": "Yes",
+      "same_sex_couples": "Yes",
+      "single_parents": "Yes",
+      "international_ips": "Limited",
+      "statute": "Virginia Code § 20-156",
+      "summary": "Virginia permits surrogacy with court approval of the surrogacy agreement before conception. Recent updates expanded access.",
+      "key_points": [
+        "Court approval required before conception",
+        "Genetic connection required for at least one IP",
+        "Home study may be required",
+        "Surrogacy-friendly courts in practice",
+        "Established legal framework"
+      ]
+    },
+    "WA": {
+      "name": "Washington",
+      "legal_status": "Surrogacy-Friendly",
+      "rating": "⭐⭐⭐⭐⭐",
+      "compensated_surrogacy": "Permitted",
+      "pre_birth_orders": "Yes",
+      "same_sex_couples": "Yes",
+      "single_parents": "Yes",
+      "international_ips": "Yes",
+      "statute": "Washington Uniform Parentage Act (RCW 26.26A)",
+      "summary": "Washington legalized compensated surrogacy in 2018. The state has comprehensive protections for all parties involved.",
+      "key_points": [
+        "Uniform Parentage Act allows compensated surrogacy",
+        "Pre-birth orders available",
+        "All family structures supported",
+        "Surrogacy agreements enforceable",
+        "Clear legal framework since 2018"
+      ]
+    },
+    "WV": {
+      "name": "West Virginia",
+      "legal_status": "Unclear/No Statute",
+      "rating": "⭐⭐",
+      "compensated_surrogacy": "Not regulated",
+      "pre_birth_orders": "No",
+      "same_sex_couples": "Limited",
+      "single_parents": "Limited",
+      "international_ips": "Not recommended",
+      "statute": "No specific statute",
+      "summary": "West Virginia has no surrogacy law. Very limited practice, generally unfriendly climate.",
+      "key_points": [
+        "No surrogacy legislation",
+        "Unfriendly legal climate",
+        "Very limited practice",
+        "Post-birth adoption required",
+        "Not recommended"
+      ]
+    },
+    "WI": {
+      "name": "Wisconsin",
+      "legal_status": "Unclear/No Statute",
+      "rating": "⭐⭐⭐",
+      "compensated_surrogacy": "Not regulated",
+      "pre_birth_orders": "Limited",
+      "same_sex_couples": "Yes",
+      "single_parents": "Limited",
+      "international_ips": "Limited",
+      "statute": "No specific statute",
+      "summary": "Wisconsin has no surrogacy statute. Limited practice with varying results by county.",
+      "key_points": [
+        "No statutory framework",
+        "Practice varies by county",
+        "Some courts grant orders",
+        "Legal uncertainty",
+        "Experienced attorney needed"
+      ]
+    },
+    "WY": {
+      "name": "Wyoming",
+      "legal_status": "Unclear/No Statute",
+      "rating": "⭐⭐",
+      "compensated_surrogacy": "Not regulated",
+      "pre_birth_orders": "No",
+      "same_sex_couples": "Limited",
+      "single_parents": "Limited",
+      "international_ips": "Not recommended",
+      "statute": "No specific statute",
+      "summary": "Wyoming has no surrogacy law. Very limited practice, generally unfriendly climate.",
+      "key_points": [
+        "No surrogacy legislation",
+        "Very limited practice",
+        "Unfriendly climate",
+        "Not recommended",
+        "Post-birth adoption required"
+      ]
+    },
+    "DC": {
+      "name": "District of Columbia",
+      "legal_status": "Surrogacy-Friendly",
+      "rating": "⭐⭐⭐⭐⭐",
+      "compensated_surrogacy": "Permitted",
+      "pre_birth_orders": "Yes",
+      "same_sex_couples": "Yes",
+      "single_parents": "Yes",
+      "international_ips": "Yes",
+      "statute": "D.C. Code § 16-401",
+      "summary": "DC has comprehensive surrogacy legislation. Very surrogacy-friendly with strong legal protections.",
+      "key_points": [
+        "Collaborative Reproduction Act",
+        "Pre-birth orders available",
+        "All family types supported",
+        "Clear legal framework",
+        "Strong protections for all parties"
+      ]
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "version": "2.0",
+  "updated": "2025-01-08",
+  "coverage": {
+    "states": 21,
+    "zip_codes": 21902,
+    "counties": 1291
+  },
+  "data_sources": {
+    "section8": "HUD FY 2025 Income Limits",
+    "snap_medicaid": "2025 Federal Poverty Guidelines",
+    "cost_of_living": "MIT Living Wage Calculator + BLS Consumer Expenditure Survey"
+  }
+}
